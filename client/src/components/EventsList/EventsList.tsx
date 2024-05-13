@@ -10,7 +10,11 @@ const EventsList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/events");
+        const response = await fetch(
+          "https://events-levwj9640-andriis-projects-0f73919d.vercel.app/api/events"
+        );
+
+        console.log(`response`, response);
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
