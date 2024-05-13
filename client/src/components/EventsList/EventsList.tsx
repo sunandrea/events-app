@@ -4,17 +4,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./events.list.module.css";
 import Link from "next/link";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const EventsList = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(
-          "https://events-levwj9640-andriis-projects-0f73919d.vercel.app/api/events"
-        );
+        const response = await fetch(`${API_URL}/events`);
 
-        console.log(`response`, response);
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
@@ -27,8 +26,6 @@ const EventsList = () => {
 
     fetchEvents();
   }, []);
-
-  console.log(events);
 
   return (
     <>
