@@ -1,0 +1,28 @@
+.eventsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.eventItem {
+  border: 1px solid black;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.eventItem p:not(:first-child) {
+  margin-top: 5px;
+}
+
+.linksWrapper {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
