@@ -11,7 +11,6 @@ const Pagination = ({
   onPageChange: any;
 }) => {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
-
   return (
     <div className={styles.pagination}>
       {currentPage > 1 && (
