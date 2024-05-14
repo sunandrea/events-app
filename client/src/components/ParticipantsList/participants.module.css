@@ -1,0 +1,23 @@
+.participantsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.participantItem {
+  border: 1px solid black;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.searchInput {
+  margin-top: 10px;
+  padding: 10px;
+}

@@ -9,4 +9,7 @@ export class CreateEventDto {
 
   @IsDateString()
   date: string;
+
+  @IsString()
+  organizer: string;
 }

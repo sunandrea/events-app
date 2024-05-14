@@ -1,14 +1,21 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { WhereHearOptions } from "@/enums/enums";
 import React from "react";
 import styles from "./register.form.module.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { IFormData } from "@/interfaces/interfaces";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const RegisterForm = () => {
+  const pathName = usePathname();
+
+  const eventId = pathName.split("/")[2];
+
   const validationSchema = Yup.object({
     fullName: Yup.string()
       .matches(
@@ -28,8 +35,8 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (
-    values: any,
-    { setSubmitting }: { setSubmitting: any }
+    values: IFormData,
+    { setSubmitting, resetForm }: { setSubmitting: any; resetForm: any }
   ) => {
     try {
       const response = await fetch(`${API_URL}/participants`, {
@@ -41,11 +48,13 @@ const RegisterForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Invalid response");
+        const data = await response.json();
+        window.alert(data.message);
+        throw new Error(data.message || "Invalid response");
       }
 
-      const data = await response.json();
-      console.log(data);
+      window.alert("Success");
+      resetForm();
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -62,6 +71,7 @@ const RegisterForm = () => {
           email: "",
           birthDate: "",
           whereHear: "",
+          event: eventId,
         }}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
@@ -107,7 +117,7 @@ const RegisterForm = () => {
                     className={styles.inputRadio}
                     type="radio"
                     name="whereHear"
-                    value={key}
+                    value={value}
                   />
                   {value}
                 </label>

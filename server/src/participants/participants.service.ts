@@ -30,6 +30,8 @@ export class ParticipantsService {
   }
 
   async findParticipantsOnEvent(eventId: string) {
-    return await this.participantModel.find({ event: eventId });
+    return await this.participantModel
+      .find({ event: eventId })
+      .populate('event', 'title');
   }
 }

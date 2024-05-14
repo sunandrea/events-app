@@ -11,6 +11,9 @@ export class Event extends Document {
 
   @Prop({ required: true })
   date: Date;
+
+  @Prop({ required: true })
+  organizer: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

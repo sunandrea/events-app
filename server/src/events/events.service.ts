@@ -12,8 +12,15 @@ export class EventsService {
     return await this.eventModel.create(createEventDto);
   }
 
-  async findAll() {
-    return await this.eventModel.find();
+  async findAll(page: number, limit: number) {
+    const totalEvents = await this.eventModel.countDocuments();
+
+    const events = await this.eventModel
+      .find()
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    return { events, totalEvents };
   }
 
   async findOne(id: string) {

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
 
@@ -12,8 +12,11 @@ export class EventsController {
   }
 
   @Get()
-  async findAll() {
-    return await this.eventsService.findAll();
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 0,
+  ) {
+    return await this.eventsService.findAll(page, limit);
   }
 
   @Get(':id')
