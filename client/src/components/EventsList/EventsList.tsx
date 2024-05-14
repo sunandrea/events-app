@@ -45,7 +45,7 @@ const EventsList = () => {
               })}
             </p>{" "}
             <div className={styles.linksWrapper}>
-              <Link href="#">Register</Link>
+              <Link href={`/register/${event._id}`}>Register</Link>
               <Link href="#">View</Link>
             </div>
           </li>
